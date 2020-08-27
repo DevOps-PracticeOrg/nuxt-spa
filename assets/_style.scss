@@ -1,0 +1,70 @@
+@for $i from 1 through 5 {
+  .u-Above#{$i} {
+    > * {
+      margin-top: #{$i * 8}px;
+    }
+
+    &.noFirst {
+      > *:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &.noLast {
+      > *:last-child {
+        margin-top: 0;
+      }
+    }
+  }
+  .u-Below#{$i} {
+    > * {
+      margin-bottom: #{$i * 8}px;
+    }
+
+    &.noFirst {
+      > *:first-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &.noLast {
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.l-Base {
+  // > * {
+  //   z-index: 0;
+  //   position: static;
+  // }
+}
+
+.u-mt-0 {
+  margin-top: 0!important;
+}
+.u-mb-0 {
+  margin-bottom: 0!important;
+}
+
+.m-Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  > * {
+    position: static!important;
+  }
+  @media screen and (max-width: 1024px) {
+    &.isActive {
+      z-index: 1!important;
+    }
+  }
+
+}
+
+.u-ver-mid {
+  vertical-align: middle;
+}
