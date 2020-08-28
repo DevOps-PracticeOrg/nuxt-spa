@@ -1,19 +1,22 @@
 <template>
   <v-app light>
 
-    <div class="m-Header">
+    <div class="m-Header" v-bind:class="{ isActive: drawer }">
       <Header :config="config"/>
 
-      <v-navigation-drawer
+    </div>
+
+    <v-navigation-drawer
+        class="m-SideHeader"
         v-model="config.drawer"
+        :hide-overlay="config.hideOverlay"
         :mini-variant="config.miniVariant"
         :clipped="config.clipped"
         config.fixed
         app
       >
-        <SideHeaderTop />
-      </v-navigation-drawer>
-    </div>
+      <SideHeaderTop />
+    </v-navigation-drawer>
 
     <v-content>
       <v-container>
@@ -56,14 +59,33 @@ export default {
     return {
       config: {
         clipped: false,
-        drawer: true,
+        drawer: false,
         fixed: false,
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: ''
+        title: '',
+        hideOverlay: true,
       }
     }
-  }
+  },
+
+  mounted: function(){
+    global.addEventListener('resize', this.getHideOverLayFlag)
+  },
+  methods: {
+    getHideOverLayFlag: function () {
+      let bp = this.$vuetify.breakpoint.name;
+      console.log(bp);
+      switch (bp) {
+        case 'xs': return this.config.hideOverlay = false;
+        case 'sm': return this.config.hideOverlay = false;
+        case 'md': return this.config.hideOverlay = false;
+        case 'lg': return this.config.hideOverlay = true;
+        case 'xl': return this.config.hideOverlay = true;
+      }
+    },
+
+  },
 }
 </script>

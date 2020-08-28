@@ -9,14 +9,8 @@
       <v-icon>fas fa-home</v-icon>
     </v-btn>
 
-    <v-app-bar-nav-icon @click.stop="config.drawer = !config.drawer" />
+    <v-app-bar-nav-icon v-if="config.drawer != null" @click.stop="config.drawer = !config.drawer" />
 
-    <v-btn
-      icon
-      @click.stop="config.miniVariant = !config.miniVariant"
-    >
-      <v-icon>mdi-{{ `chevron-${config.miniVariant ? 'right' : 'left'}` }}</v-icon>
-    </v-btn>
 
     <v-toolbar-title v-text="config.title" />
     <v-spacer />

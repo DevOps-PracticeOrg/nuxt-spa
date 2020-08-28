@@ -57,14 +57,19 @@
   > * {
     position: static!important;
   }
-  @media screen and (max-width: 1024px) {
-    &.isActive {
-      z-index: 1!important;
-    }
-  }
-
+  z-index: 1!important;
+  // &.isActive {
+  //   z-index: 1!important;
+  // }
 }
 
+.m-SideHeader {
+  top: 70px!important;
+}
+.v-overlay {
+  top: 56px!important;
+}
 .u-ver-mid {
   vertical-align: middle;
 }
+

@@ -1,18 +1,12 @@
 <template>
   <v-app light class="l-Base">
 
-    <div class="m-Header" v-bind:class="{ isActive: config.drawer }">
+    <div class="m-Header">
       <Header :config="config"/>
+    </div>
 
-      <v-navigation-drawer
-        v-model="config.drawer"
-        :mini-variant="config.miniVariant"
-        :clipped="config.clipped"
-        config.fixed
-        app
-      >
-        <SideHeaderDocumentCreate :share_data="share_data"/>
-      </v-navigation-drawer>
+    <div class="m-SideHeader">
+      <SideHeaderDocumentCreate :share_data="share_data"/>
     </div>
 
     <v-content>
@@ -37,24 +31,24 @@ import Header from '~/components/Header.vue';
 export default {
   data () {
     return {
-
       share_data: {
         status: 0,
       },
       config: {
         clipped: false,
-        drawer: true,
         fixed: false,
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
         title: 'テンプレート作成'
       },
     }
   },
+  computed: {
+    drawer: function () {
+      return this.config.drawer;
+    },
+  },
   methods: {
-    changeStatus: function (change) {
 
+    changeStatus: function (change) {
 
       //正の数
       if (change >= 0) {
@@ -66,6 +60,7 @@ export default {
       } else if (this.share_data.status > 0) {
         this.share_data.status = this.share_data.status + (change);
       }
+      console.log( this.config.drawer)
     },
 
     setListener() {
@@ -78,3 +73,20 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.m-SideHeader {
+
+  margin-top: 60px;
+  @media screen and (max-width: 799px){
+    width: 100%!important;
+    height: 80px!important;
+  }
+  @media screen and (min-width: 800px){
+    width: 120px;
+    height: auto;
+    position: absolute;
+  }
+
+}
+</style>

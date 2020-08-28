@@ -1,5 +1,5 @@
 <template>
-    <v-list class="py-0">
+    <v-list class="m-SideHeader__inner py-0 d-flex flex-row">
       <v-list-item
         v-for="(item, i) in items"
         :key="i"
@@ -14,7 +14,7 @@
               <div class="ep-Circle"></div>
               <div class="ep-Line" v-if="i==0"></div>
             </div>
-            <p class="align-self-center mb-0 ml-4">{{item.title}}</p>
+            <p class="a-Txt align-self-center mb-0">{{item.title}}</p>
           </v-list-item-title>
 
         </v-list-item-content>
@@ -62,6 +62,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.m-SideHeader__inner {
+  @media screen and (min-width: 800px){
+    display: block!important;
+  }
+}
+
 .c-List {
   * {
     overflow: visible;
@@ -69,13 +76,27 @@ export default {
   > * {
     display: inline-block;
     width: 120px;
+  }
 
+  .a-Txt {
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 800px){
+      margin-left: 16px;
+      text-align: left;
+    }
   }
 
   .a-Icon {
     position: relative;
     height: 24px!important;
     width: 24px!important;
+    @media screen and (max-width: 800px){
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
     > * {
       height: inherit;
       width: inherit;
@@ -87,13 +108,20 @@ export default {
         }
       }
     }
+
+
     .ep-Circle {
       position: absolute;
       z-index: 1;
+      @media screen and (max-width: 800px){
+        bottom: -20px;
+      }
       &::before, &::after {
         content: "";
         display: inline-block;
         border-radius: 50%;
+
+
       }
       &::before {
         height: inherit;
@@ -121,11 +149,21 @@ export default {
       &::before {
         content: "";
         display: block;
-        height: 200px;
-        width: 4px;
+        height: 4px;
+        width: 75vw;
         background: rgba($color: #dbdbdb, $alpha: 1);
         margin-left: auto;
         margin-right: auto;
+
+        position: absolute;
+        @media screen and (max-width: 800px){
+          bottom: -8px;
+        }
+        @media screen and (min-width: 800px){
+          height: 200px;
+          width: 4px;
+          position: static;
+        }
       }
     }
 
