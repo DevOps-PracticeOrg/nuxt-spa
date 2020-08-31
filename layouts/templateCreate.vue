@@ -9,7 +9,7 @@
       <SideHeaderDocumentCreate :share_data="share_data"/>
     </div>
 
-    <v-content>
+    <v-content class="m-Main">
       <v-container>
         <nuxt :share_data="share_data"/>
       </v-container>
@@ -85,8 +85,10 @@ export default {
   @media screen and (min-width: 800px){
     width: 120px;
     height: auto;
-    position: absolute;
+    position: fixed;
   }
-
+}
+.m-Main {
+  margin-top: 40px;
 }
 </style>

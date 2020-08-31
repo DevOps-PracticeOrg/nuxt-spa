@@ -1,3 +1,7 @@
+ul {
+  list-style: none;
+}
+
 @for $i from 1 through 5 {
   .u-Above#{$i} {
     > * {

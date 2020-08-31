@@ -2,62 +2,16 @@
   <v-layout
     column
     justify-center
-    align-center
   >
     <v-flex
       xs12
       sm8
       md6
     >
-      <!-- <v-list class="justify-space-around d-flex">
-        <v-list-item
-          v-for="(layer0, i) in input_list"
-          :key="i"
-        >
-        </v-list-item>
-      </v-list> -->
 
-    <div class="d-flex align-content-space-between u-btn-wrapper">
-      <v-btn class="ma-2" color="info">大枠追加</v-btn>
-    </div>
-
-    <v-form>
-      <ul class="justify-space-around d-flex">
-        <li class="c-Layer for0"
-          v-for="(layer0, i) in input_list"
-          :key="i"
-        >
-          <div class="c-Layer__content">
-            <v-text-field class="a-Txt" v-model="layer0.name" />
-            <v-btn class="ma-2" color="info" @click="addInput(layer0.items)">カテゴリ追加</v-btn>
-          </div>
-
-          <ul class="c-Layer__inner">
-            <li class="c-Layer for1"
-              v-for="(layer1, i) in layer0.items"
-              :key="i"
-            >
-              <div class="c-Layer__content">
-                <v-text-field class="a-Txt" v-model="layer1.name" />
-                <v-btn class="ma-2" color="info" @click="addInput(layer1.items)">アイテム追加</v-btn>
-              </div>
-              <ul class="c-Layer__inner">
-                <li class="c-Layer for2"
-                  v-for="(layer2, i) in layer1.items"
-                  :key="i"
-                >
-                  <div class="c-Layer__content">
-                    <v-text-field class="a-Txt" v-model="layer2.name" />
-                  </div>
-
-                </li>
-              </ul>
-            </li>
-          </ul>
-
-        </li>
-      </ul>
-    </v-form>
+      <v-form>
+        <Mycomponent :input_list="input_list"/>
+      </v-form>
 
     </v-flex>
     <div class="d-flex align-content-space-between u-btn-wrapper">
@@ -89,6 +43,7 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Mycomponent from '~/components/Mycomponent.vue'
 
 export default {
   components: {
@@ -109,134 +64,54 @@ export default {
           loading: false,
         },
       },
-      sample: {
-          order: 0,
-          name: "2",
-          items: [
+      input_list: {
+        layer: "top",
+        name: "top",
+        btn: "大枠追加",
+        items: [
+          {
+            layer: "first",
+            name: "大枠0",
+            btn: "カテゴリ追加",
+            items: [
+              {
+                layer: "second",
+                name: "カテゴリ0-0",
+                btn: "アイテム追加",
+                items: [
+                  {
+                    name: "アイテム0-0-0",
+                     btn: "",
+                    items: {
+                    }
+                  },
+                ]
+              },
+              {
+                layer: "second",
+                name: "カテゴリ0-0",
+                btn: "アイテム追加",
+                items: [
+                  {
+                    name: "アイテム0-0-0",
+                    btn: "",
+                    items: {
+                    }
+                  },
+                  {
+                    name: "アイテム0-0-0",
+                    btn: "",
+                    items: {
+                    }
+                  },
+                ]
+              },
+            ]
+          },
 
-            // {
-            //   order: 0,
-            //   name: "1-0",
-            //   items: [
-            //     {
-            //       order: 0,
-            //       name: "1-0-0",
-            //       items: {
-            //       }
-            //     },
-            //     {
-            //       order: 1,
-            //       name: "1-0-1",
-            //       items: {
-            //       }
-            //     }
-            //   ]
-            // },
-
-            // {
-            //   name: "1-1",
-            //   items: [
-            //     {
-            //       name: "1-1-0",
-            //       items: {
-            //       }
-            //     },
-            //     {
-            //       name: "1-1-1",
-            //       items: {
-            //       }
-            //     }
-            //   ]
-            // }
-          ]
-        },
-      input_list: [
-        {
-          order: 0,
-          name: "0",
-          items: [
-
-            {
-              order: 0,
-              name: "0-0",
-              items: [
-                {
-                  order: 0,
-                  name: "0-0-0",
-                  items: {
-                  }
-                },
-                {
-                  order: 1,
-                  name: "0-0-1",
-                  items: {
-                  }
-                }
-              ]
-            },
-
-            {
-              name: "0-1",
-              items: [
-                {
-                  name: "0-1-0",
-                  items: {
-                  }
-                },
-                {
-                  name: "0-1-1",
-                  items: {
-                  }
-                }
-              ]
-            }
-          ]
-        },
-
-        {
-          order: 0,
-          name: "1",
-          items: [
-
-            {
-              order: 0,
-              name: "1-0",
-              items: [
-                {
-                  order: 0,
-                  name: "1-0-0",
-                  items: {
-                  }
-                },
-                {
-                  order: 1,
-                  name: "1-0-1",
-                  items: {
-                  }
-                }
-              ]
-            },
-
-            {
-              name: "1-1",
-              items: [
-                {
-                  name: "1-1-0",
-                  items: {
-                  }
-                },
-                {
-                  name: "1-1-1",
-                  items: {
-                  }
-                }
-              ]
-            }
-          ]
-        },
-
-
-      ],
+        ],
+      },
+      test: null,
     }
   },
   computed: {
@@ -256,7 +131,9 @@ export default {
     addInput: function (items) {
 
     },
-  }
+
+  },
+
 }
 </script>
 <style lang="scss" scoped>
